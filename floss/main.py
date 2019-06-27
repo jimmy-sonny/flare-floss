@@ -502,7 +502,7 @@ def get_identification_results(sample_file_path, decoder_results):
     if len(candidates) == 0:
         return list()
     else:
-        response_list = [{"fva": fva, "score": "%.5f" %
+        return [{"fva": fva, "score": "%.5f" %
                           (score)} for fva, score in candidates]
 
 
@@ -1291,7 +1291,6 @@ def main(argv=None):
 
     if options.json_path:
         with open(options.json_path, "w") as j_out:
-            print(response_dict)
             json.dump(response_dict, j_out)
         print("\nJSON written to : %s" % options.json_path)
 
