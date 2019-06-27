@@ -502,7 +502,7 @@ def get_identification_results(sample_file_path, decoder_results):
     if len(candidates) == 0:
         return list()
     else:
-        return [{"fva": fva, "score": "%.5f" %
+        return [{"fva": hex(fva), "score": "%.5f" %
                           (score)} for fva, score in candidates]
 
 
@@ -540,8 +540,8 @@ def get_decoding_results(decoded_strings, group_functions, quiet=False, expert=F
             if len_ds > 0:
                 # group_functions implies the expert mode
                 grouped_dict = {
-                    "fva": fva,
-                    "string_list": [{"va": x[0], "string":x[1], "decoded_at_va":x[2], "fva":x[3]} for x in grouped_strings]
+                    "fva": hex(fva),
+                    "string_list": [{"va": hex(x[0]), "string":x[1], "decoded_at_va": hex(x[2]), "fva": hex(x[3])} for x in grouped_strings]
                 }
                 response_list.append(grouped_dict)
         return response_list
@@ -555,7 +555,7 @@ def get_decoding_results(decoded_strings, group_functions, quiet=False, expert=F
             return [x[1] for x in decoded_strings]
 
         # expert mode answer
-        return [{"va": x[0], "string":x[1], "decoded_at_va":x[2], "fva":x[3]} for x in decoded_strings]
+        return [{"va": hex([0]), "string":x[1], "decoded_at_va": hex(x[2]), "fva": hex(x[3])} for x in decoded_strings]
 
 
 def print_decoding_results(decoded_strings, group_functions, quiet=False, expert=False):
@@ -1035,7 +1035,7 @@ def get_stack_strings(extracted_strings, quiet=False, expert=False):
     if not expert:
         return list(extracted_strings)
     else:
-        return [{"fva": s.fva, "string": s.s} for s in extracted_strings]
+        return [{"fva": hex(s.fva), "string": s.s} for s in extracted_strings]
 
 
 def print_stack_strings(extracted_strings, quiet=False, expert=False):
@@ -1154,7 +1154,7 @@ def main(argv=None):
 
     if options.list_plugins:
         plugin_list_ouptut = get_plugin_list()
-        response_dict['plugin_list'] = plugin_list_ouptut
+        response_dict['floss_plugin_list'] = plugin_list_ouptut
         # print_plugin_list()
         # return 0
 
