@@ -1033,7 +1033,7 @@ def get_stack_strings(extracted_strings, quiet=False, expert=False):
     count = len(extracted_strings)
 
     if not expert:
-        return list(extracted_strings)
+        return [s.s for s in extracted_strings]
     else:
         return [{"fva": hex(s.fva), "string": s.s} for s in extracted_strings]
 
